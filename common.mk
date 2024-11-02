@@ -99,6 +99,7 @@ PRODUCT_PACKAGES += \
 
 # VNDK for DRM
 PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-v29 \
     libprotobuf-cpp-lite-v29
 
 # ConfigStore
@@ -139,7 +140,7 @@ PRODUCT_PACKAGES += \
 
 # Input
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/fingerprint.kl:system/usr/keylayout/fingerprint.kl
+    $(LOCAL_PATH)/configs/keylayout/fingerprint.kl:system/usr/keylayout/fingerprint.kl
 
 # GNSS
 PRODUCT_PACKAGES += \

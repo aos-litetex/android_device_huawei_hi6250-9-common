@@ -526,6 +526,8 @@ etc/native_packages.xml:etc/native_packages.bin
 -lib64/libtuidaemon.so
 -lib64/vendor.huawei.hardware.libteec@1.0.so
 -lib64/vendor.huawei.hardware.libteec@2.0.so;MODULE=vendor.huawei.hardware.libteec@2.0.so_system
+
+# TEE Configs
 -vendor/bin/hw/vendor.huawei.hardware.libteec@2.0-service
 -vendor/bin/32e6a847-ac89-4f81-8a13-f4ae50451d7f.sec
 -vendor/bin/335129cd-41fa-4b53-9797-5ccb202a52d4.sec
