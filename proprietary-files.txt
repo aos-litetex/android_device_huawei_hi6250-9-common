@@ -410,6 +410,12 @@ vendor/etc/perfgenius_scenario_policy.xml
 -vendor/lib64/vendor.huawei.hardware.graphics.mediacomm@2.0.so
 -vendor/lib64/vendor.huawei.hardware.graphics.mediacomm@2.1.so
 
+# DRM (L1 et L3)
+preavs/bin/hw/android.hardware.drm@1.1-service.widevine:vendor/bin/hw/android.hardware.drm@1.1-service.widevine
+vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc
+preavs/oemcrypto/liboemcrypto.so:vendor/lib/liboemcrypto.so
+preavs/lib/libwvhidl.so:vendor/lib/libwvhidl.so
+
 # HWComposer - patched to nop some functions
 # (checkPartialUpdate, SetPartialUpdates, CalcLayerMaskRects, CalcComposeRect, CheckRotCapability) to fix HWC itself, random crashes, etc.
 -vendor/lib64/hw/hwcomposer.hi6250.so|708a59318b0d4b2267dddfef87d26cfa0af888eb

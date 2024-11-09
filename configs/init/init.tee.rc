@@ -23,7 +23,7 @@ service teelogcat /vendor/bin/tlogcat -f
     user root
     group system
     disabled
-    seclabel u:r:tlogcat:s0
+    seclabel u:r:teelogcat:s0
 
 # TEE set sec_storage_data can be access by teecd to store fingerprint infos
 on fs
