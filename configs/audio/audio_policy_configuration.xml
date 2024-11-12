@@ -20,7 +20,7 @@
     <!-- Global configuration Decalaration -->
     <globalConfiguration speaker_drc_enabled="false"/>
 
-	
+
     <!-- Modules section:
         There is one section per audio HW module present on the platform.
         Each module section will contains two mandatory tags for audio HAL “halVersion” and “name”.
@@ -42,7 +42,7 @@
         defined in <devicePorts> section.
         “defaultOutputDevice”: device to be used by default when no policy rule applies
     -->
-	    <modules>
+    <modules>
         <!-- Primary Audio HAL -->
         <module name="primary" halVersion="3.0">
             <attachedDevices>
@@ -50,44 +50,37 @@
                 <item>Speaker</item>
                 <item>Built-In Mic</item>
                 <item>Built-In Back Mic</item>
-                <item>Telephony Rx</item>
             </attachedDevices>
             <defaultOutputDevice>Speaker</defaultOutputDevice>
             <mixPorts>
-                <mixPort name="primary output" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
+                <mixPort name="primary out" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                             samplingRates="48000"
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
-                <mixPort name="compressed_offload" role="source"
-                         flags="AUDIO_OUTPUT_FLAG_DIRECT|AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD|AUDIO_OUTPUT_FLAG_NON_BLOCKING">
+                <mixPort name="offload" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT|AUDIO_OUTPUT_FLAG_COMPRESS_OFFLOAD|AUDIO_OUTPUT_FLAG_NON_BLOCKING">
                     <profile name="" format="AUDIO_FORMAT_MP3"
                              samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO,AUDIO_CHANNEL_OUT_MONO"/>
-                    <profile name="" format="AUDIO_FORMAT_AAC_LC"
-                             samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO,AUDIO_CHANNEL_OUT_MONO"/>
-                    <profile name="" format="AUDIO_FORMAT_AAC_HE_V1"
-                             samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO,AUDIO_CHANNEL_OUT_MONO"/>
-                    <profile name="" format="AUDIO_FORMAT_AAC_HE_V2"
-                             samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_OUT_STEREO,AUDIO_CHANNEL_OUT_MONO"/>
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                    <profile name="" format="AUDIO_FORMAT_PCM_24_BIT_PACKED"
+                             samplingRates="48000"
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
                 </mixPort>
-
-                <mixPort name="primary input" role="sink">
+                <mixPort name="primary in" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
-                             samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
+                             samplingRates="8000,11025,16000,22050,24000,32000,44100,48000"
                              channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO,AUDIO_CHANNEL_IN_VOICE_CALL,AUDIO_CHANNEL_IN_VOICE_CALL_STEREO"/>
                 </mixPort>
             </mixPorts>
-
             <devicePorts>
                 <!-- Output devices declaration, i.e. Sink DEVICE PORT -->
                 <devicePort tagName="Earpiece" type="AUDIO_DEVICE_OUT_EARPIECE" role="sink">
                 </devicePort>
-                <devicePort tagName="Speaker" type="AUDIO_DEVICE_OUT_SPEAKER" role="sink">
+                <devicePort tagName="Speaker"  type="AUDIO_DEVICE_OUT_SPEAKER" role="sink">
                 </devicePort>
                 <devicePort tagName="Wired Headset" type="AUDIO_DEVICE_OUT_WIRED_HEADSET" role="sink">
+                </devicePort>
+                <devicePort tagName="Dgtl Dock Headset" type="AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET" role="sink">
                 </devicePort>
                 <devicePort tagName="Wired Headphones" type="AUDIO_DEVICE_OUT_WIRED_HEADPHONE" role="sink">
                 </devicePort>
@@ -95,55 +88,47 @@
                 </devicePort>
                 <devicePort tagName="BT SCO Headset" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET" role="sink">
                 </devicePort>
-                <devicePort tagName="BT SCO Car Kit" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT" role="sink">
+                <devicePort tagName="BT SCO Carkit" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_CARKIT" role="sink">
                 </devicePort>
-                <devicePort tagName="HDMI" type="AUDIO_DEVICE_OUT_HDMI" role="sink">
-                </devicePort>
-                <devicePort tagName="Digital Dock Headset" type="AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET" role="sink">
+                <devicePort tagName="Aux Dgtl" type="AUDIO_DEVICE_OUT_AUX_DIGITAL"  role="sink">
                 </devicePort>
                 <devicePort tagName="FM" type="AUDIO_DEVICE_OUT_FM" role="sink">
                 </devicePort>
-
-                <!-- Input devices declaration, i.e. Source DEVICE PORT -->
                 <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
-                </devicePort>
-                <devicePort tagName="BT SCO Headset Mic" type="AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET" role="source">
-                </devicePort>
-                <devicePort tagName="Wired Headset Mic" type="AUDIO_DEVICE_IN_WIRED_HEADSET" role="source">
                 </devicePort>
                 <devicePort tagName="Built-In Back Mic" type="AUDIO_DEVICE_IN_BACK_MIC" role="source">
                 </devicePort>
-                <devicePort tagName="Telephony Rx" type="AUDIO_DEVICE_IN_TELEPHONY_RX" role="source">
+                <devicePort tagName="Wired Headset Mic" type="AUDIO_DEVICE_IN_WIRED_HEADSET" role="source">
+                </devicePort>
+                <devicePort tagName="BT SCO Headset Mic" type="AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET" role="source">
                 </devicePort>
                 <devicePort tagName="FM Tuner" type="AUDIO_DEVICE_IN_FM_TUNER" role="source">
                 </devicePort>
-
             </devicePorts>
             <!-- route declaration, i.e. list all available sources for a given sink -->
             <routes>
                 <route type="mix" sink="Earpiece"
-                       sources="primary output"/>
+                       sources="primary out,offload"/>
                 <route type="mix" sink="Speaker"
-                       sources="primary output,compressed_offload"/>
+                       sources="primary out,offload"/>
                 <route type="mix" sink="Wired Headset"
-                       sources="primary output,compressed_offload"/>
+                       sources="primary out,offload"/>
                 <route type="mix" sink="Wired Headphones"
-                       sources="primary output,compressed_offload"/>
+                       sources="primary out,offload"/>
+                <route type="mix" sink="Dgtl Dock Headset"
+                       sources="primary out"/>
                 <route type="mix" sink="BT SCO"
-                       sources="primary output"/>
+                       sources="primary out"/>
                 <route type="mix" sink="BT SCO Headset"
-                       sources="primary output"/>
-                <route type="mix" sink="BT SCO Car Kit"
-                       sources="primary output"/>
-                <route type="mix" sink="HDMI"
-                       sources="primary output"/>
-                <route type="mix" sink="Digital Dock Headset"
-                       sources="primary output"/>
+                       sources="primary out"/>
+                <route type="mix" sink="BT SCO Carkit"
+                       sources="primary out"/>
                 <route type="mix" sink="FM"
-                       sources="primary output"/>
-
-                <route type="mix" sink="primary input"
-                       sources="Built-In Mic,BT SCO Headset Mic,Wired Headset Mic,Built-In Back Mic,Telephony Rx,FM Tuner"/>
+                       sources="primary out"/>
+                <route type="mix" sink="Aux Dgtl"
+                       sources="primary out"/>
+                <route type="mix" sink="primary in"
+                       sources="Built-In Mic,Built-In Back Mic,Wired Headset Mic,BT SCO Headset Mic,FM Tuner"/>
             </routes>
 
         </module>
@@ -156,6 +141,9 @@
 
         <!-- Remote Submix Audio HAL -->
         <xi:include href="r_submix_audio_policy_configuration.xml"/>
+
+        <!-- Hearing aid Audio HAL -->
+        <!-- <xi:include href="hearing_aid_audio_policy_configuration.xml"/> -->
 
     </modules>
     <!-- End of Modules section -->
