@@ -11,7 +11,8 @@ COMMON_PATH := device/huawei/hi6250-9-common
 # Fix charger animation conflit
 BUILD_BROKEN_DUP_RULES := true
 
-# VNDK
+# Build System
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 # Architecture
@@ -54,6 +55,8 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
 
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/hidl/vintf/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/hidl/vintf/compatibility_matrix.xml
+
+
 
 # Kernel (boot)
 BOARD_CUSTOM_BOOTIMG := true
