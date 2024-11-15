@@ -14,9 +14,6 @@ vendor/lib64/libsmartpakit.so
 vendor/lib64/libtas2560.so
 vendor/lib64/vendor.huawei.hardware.rtt@1.0.so
 
-# Audio Configs
-vendor/etc/audio_effects.xml
-
 # Audio Effects (Huawei effect)
 vendor/lib/libhuaweiaudioeffectutil.so
 vendor/lib/soundfx/libhuaweiprocessing.so
