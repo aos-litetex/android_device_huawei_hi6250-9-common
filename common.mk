@@ -384,4 +384,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libpn551_fw
 
-$(call inherit-product, $(COMMON_PATH)/system_prop.mk)
+# IMS FLOSS by Phh
+PRODUCT_PACKAGES += \
+    PhhIMS
+
+
