@@ -230,10 +230,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     wpa_supplicant
 
-PRODUCT_PACKAGES += \
-    WifiOverlay \
-    TetheringConfigOverlay
-
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/wifi/wpa_supplicant_hisi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
     $(COMMON_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
@@ -321,11 +317,16 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
 
-# Overlay
-DEVICE_PACKAGE_OVERLAYS := \
-    $(COMMON_PATH)/overlay
+# Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
+
+PRODUCT_PACKAGES += \
+    WifiOverlay \
+    TetheringConfigOverlay
 
 
 # Protobuf
