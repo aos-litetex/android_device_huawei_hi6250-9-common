@@ -86,7 +86,7 @@ on property:bluetooth.log.file.create=true
    
 # WPA - Wifi
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant -dd \
-    -puse_p2p_group_interface=1 \
+    -puse_p2p_group_interface=1p2p_device=1 \
     -m/data/vendor/wifi/wpa/p2p_supplicant.conf \
     -O/data/vendor/wifi/wpa/sockets \
     -g@android:wpa_wlan0

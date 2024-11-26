@@ -111,9 +111,13 @@ TARGET_VENDOR_PROP += $(COMMON_PATH)/properties/vendor.prop
 TARGET_SYSTEM_PROP += $(COMMON_PATH)/properties/system.prop
 
 
+
 # Recovery
 BOARD_USES_FULL_RECOVERY_IMAGE := true
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/configs/init/fstab.hi6250
+TARGET_RECOVERY_DEVICE_MODULES := init_hisi
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -139,13 +143,19 @@ include device/hisi/sepolicy/SEPolicy.mk
 # Vendor
 VENDOR_SECURITY_PATCH := 2022-01-01 # ANE-LGRP2-OVS 9.1.0.401
 
-# Wifi
+## Wi-Fi
+ifneq ($(BOARD_HAVE_WIFI),false)
 BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE := bcmdhd
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+
+BOARD_WLAN_DEVICE := bcmdhd
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+endif
 
 
 # Inherit the proprietary files
